@@ -1,0 +1,7 @@
+---
+# tasks file for apigee-opdk-start-components
+
+- name: Start Apigee
+  shell: '{{ apigee_all }} start'
+  register: start_cmd_report
+  when: opdk_version | version_compare('4.16.01', '>=')
