@@ -1,11 +1,11 @@
 ---
 # tasks file for apigee-opdk-start-components
-- name: Start Apigee component {{ component_name }}
+- name: Start Apigee component
   ignore_errors: yes
   shell: '{{ apigee_all }} start'
   when: component_name == 'all' and opdk_version | version_compare('4.16.01', '>=')
 
-- name: Start Apigee component {{ component_name }}
+- name: Start Apigee component
   ignore_errors: yes
   shell: '{{ apigee_service }} {{ component_name }} start'
   when: component_name != 'all' and opdk_version | version_compare('4.16.01', '>=')
