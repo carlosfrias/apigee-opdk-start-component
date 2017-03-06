@@ -2,13 +2,13 @@
 # tasks file for apigee-opdk-start-components
 - name: Start a specific Apigee component on the node
   ignore_errors: yes
-  shell: '{{ apigee_all }} start'
-  when: component_name == 'all' and opdk_version | version_compare('4.16.01', '>=')
+  shell: '{{ apigee_service }} {{ component_name }} start'
+  when: component_name != 'all' and opdk_version | version_compare('4.16.01', '>=')
 
 - name: Start all Apigee components on the node
   ignore_errors: yes
-  shell: '{{ apigee_service }} {{ component_name }} start'
-  when: component_name != 'all' and opdk_version | version_compare('4.16.01', '>=')
+  shell: '{{ apigee_all }} start'
+  when: component_name == 'all' and opdk_version | version_compare('4.16.01', '>=')
 
 - name: Time delay to give components time to start
   pause:
