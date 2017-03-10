@@ -12,4 +12,4 @@
 
 - name: Time delay to give components time to start
   pause:
-    minutes: '{{ component_start_delay | default(0) }}'
+    seconds: '{{ component_start_delay | default(0) }}'
