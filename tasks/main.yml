@@ -3,10 +3,11 @@
 - block:
 
   - name: Start a specific Apigee component on the node
-    ignore_errors: yes
+    ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_service }} {{ component_name }} start'
 
   - name: Wait for ready
+    ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_service }} {{ component_name }} wait_for_ready'
     when: validate_ready | default(true)
 
@@ -15,10 +16,11 @@
 - block:
 
   - name: Start all Apigee components on the node
-    ignore_errors: yes
+    ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_all }} start'
 
   - name: Wait for ready
+    ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_all }} wait_for_ready'
     when: validate_ready | default(true)
 
