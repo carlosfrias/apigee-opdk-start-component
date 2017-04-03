@@ -1,15 +1,25 @@
 ---
 # tasks file for apigee-opdk-start-components
-- name: Start a specific Apigee component on the node
-  ignore_errors: yes
-  shell: '{{ apigee_service }} {{ component_name }} start'
+- block:
+
+  - name: Start a specific Apigee component on the node
+    ignore_errors: yes
+    shell: '{{ apigee_service }} {{ component_name }} start'
+
+  - name: Wait for ready
+    shell: '{{ apigee_service }} {{ component_name }} wait_for_ready'
+    when: validate_ready | default(true)
+
   when: component_name != 'all' and opdk_version | version_compare('4.16.01', '>=')
 
-- name: Start all Apigee components on the node
-  ignore_errors: yes
-  shell: '{{ apigee_all }} start'
-  when: component_name == 'all' and opdk_version | version_compare('4.16.01', '>=')
+- block:
 
-- name: Wait for ready
-  shell: '{{ apigee_service }} {{ component_name }} wait_for_ready'
-  when: validate_ready | default(true)
+  - name: Start all Apigee components on the node
+    ignore_errors: yes
+    shell: '{{ apigee_all }} start'
+
+  - name: Wait for ready
+    shell: '{{ apigee_all }} wait_for_ready'
+    when: validate_ready | default(true)
+
+  when: component_name is not defined or (component_name == 'all' and opdk_version | version_compare('4.16.01', '>=') )
