@@ -10,6 +10,6 @@
   shell: '{{ apigee_all }} start'
   when: component_name == 'all' and opdk_version | version_compare('4.16.01', '>=')
 
-- name: Time delay to give components time to start
-  pause:
-    seconds: '{{ component_start_delay | default(0) }}'
+- name: Wait for ready
+  shell: '{{ apigee_service }} {{ component_name }} wait_for_ready'
+  when: validate_ready | default(true)
