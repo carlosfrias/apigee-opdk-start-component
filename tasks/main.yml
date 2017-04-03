@@ -6,7 +6,7 @@
     ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_service }} {{ component_name }} start'
 
-  - name: Wait for ready
+  - name: Wait for ready on a specific Apigee component
     ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_service }} {{ component_name }} wait_for_ready'
     when: validate_ready | default(true)
@@ -19,7 +19,7 @@
     ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_all }} start'
 
-  - name: Wait for ready
+  - name: Wait for ready on all Apigee components on the node
     ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_all }} wait_for_ready'
     when: validate_ready | default(true)
