@@ -3,22 +3,20 @@
 - block:
 
   - name: Start a specific Apigee component on the node
-#    ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_service }} {{ component_name }} start'
     when: opdk_debug_mode is not defined or opdk_debug_mode | trim | lower == 'off'
 
   - name: Wait for ready on a specific Apigee component
-#    ignore_errors: "{{ ignore_errors | default (true) }}"
+    ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_service }} {{ component_name }} wait_for_ready'
     when: validate_ready | default(true) and opdk_debug_mode is not defined or opdk_debug_mode | trim | lower == 'off'
 
   - name: DEBUG_MODE - Start a specific Apigee component on the node
-#    ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_service }} {{ component_name }} start'
     when: opdk_debug_mode is defined and opdk_debug_mode | trim | lower == 'on'
 
   - name: DEBUG_MODE - Wait for ready on a specific Apigee component
-#    ignore_errors: "{{ ignore_errors | default (true) }}"
+    ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_service }} {{ component_name }} wait_for_ready'
     when: validate_ready | default(true) and opdk_debug_mode is defined and opdk_debug_mode | trim | lower == 'on'
 
@@ -27,22 +25,20 @@
 - block:
 
   - name: Start all Apigee components on the node
-#    ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_all }} start'
     when: opdk_debug_mode is not defined or opdk_debug_mode | trim | lower == 'off'
 
   - name: Wait for ready on all Apigee components on the node
-#    ignore_errors: "{{ ignore_errors | default (true) }}"
+    ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_all }} wait_for_ready'
     when: validate_ready | default(true) and opdk_debug_mode is not defined or opdk_debug_mode | trim | lower == 'off'
 
   - name: DEBUG_MODE - Start all Apigee components on the node
-#    ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_all }} start'
     when: opdk_debug_mode is defined and opdk_debug_mode | trim | lower == 'on'
 
   - name: DEBUG_MODE - Wait for ready on all Apigee components on the node
-#    ignore_errors: "{{ ignore_errors | default (true) }}"
+    ignore_errors: "{{ ignore_errors | default (true) }}"
     shell: '{{ apigee_all }} wait_for_ready'
     when: validate_ready | default(true) and opdk_debug_mode is defined and opdk_debug_mode | trim | lower == 'on'
 
