@@ -21,7 +21,7 @@
       no_proxy: "{{ no_proxy }}"
       PORT_TIMEOUT: '{{ port_timeout | default(60) }}'
       UP_TIMEOUT: '{{ up_timeout | default(60) }}'
-    when: validate_ready | default(true) and opdk_debug_mode is not defined or opdk_debug_mode | trim | lower == 'off'
+    when: wait_for_ready | default(false) and opdk_debug_mode is not defined or opdk_debug_mode | trim | lower == 'off'
 
   - name: DEBUG_MODE - Start a specific Apigee component on the node
     shell: '{{ apigee_service }} {{ component_name }} start'
@@ -42,7 +42,7 @@
       no_proxy: "{{ no_proxy }}"
       PORT_TIMEOUT: '{{ port_timeout | default(60) }}'
       UP_TIMEOUT: '{{ up_timeout | default(60) }}'
-    when: validate_ready | default(true) and opdk_debug_mode is defined and opdk_debug_mode | trim | lower == 'on'
+    when: wait_for_ready | default(false) and opdk_debug_mode is defined and opdk_debug_mode | trim | lower == 'on'
 
   when: component_name != 'all' and opdk_version | version_compare('4.16.01', '>=')
 
