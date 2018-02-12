@@ -3,7 +3,7 @@
 - block:
 
   - name: Start a specific Apigee component on the node
-    shell: '{{ apigee_service }} {{ component_name }} start'
+    shell: '/opt/apigee/apigee-service/bin/apigee-service {{ component_name }} start'
     environment:
       http_proxy: "{{ http_proxy }}"
       https_proxy: "{{ https_proxy }}"
@@ -14,7 +14,7 @@
 
 #  - name: Wait for ready on a specific Apigee component
 #    ignore_errors: "{{ ignore_errors | default (true) }}"
-#    shell: '{{ apigee_service }} {{ component_name }} wait_for_ready'
+#    shell: '/opt/apigee/apigee-service/bin/apigee-service {{ component_name }} wait_for_ready'
 #    environment:
 #      http_proxy: "{{ http_proxy }}"
 #      https_proxy: "{{ https_proxy }}"
@@ -24,7 +24,7 @@
 #    when: wait_for_ready | default(false) and opdk_debug_mode is not defined or opdk_debug_mode | trim | lower == 'off'
 
   - name: DEBUG_MODE - Start a specific Apigee component on the node
-    shell: '{{ apigee_service }} {{ component_name }} start'
+    shell: '/opt/apigee/apigee-service/bin/apigee-service {{ component_name }} start'
     environment:
       http_proxy: "{{ http_proxy }}"
       https_proxy: "{{ https_proxy }}"
@@ -35,7 +35,7 @@
 
 #  - name: DEBUG_MODE - Wait for ready on a specific Apigee component
 #    ignore_errors: "{{ ignore_errors | default (true) }}"
-#    shell: '{{ apigee_service }} {{ component_name }} wait_for_ready'
+#    shell: '/opt/apigee/apigee-service/bin/apigee-service {{ component_name }} wait_for_ready'
 #    environment:
 #      http_proxy: "{{ http_proxy }}"
 #      https_proxy: "{{ https_proxy }}"
@@ -49,7 +49,7 @@
 - block:
 
   - name: Start all Apigee components on the node
-    shell: '{{ apigee_all }} start'
+    shell: '/opt/apigee/apigee-service/bin/apigee-all start'
     environment:
       http_proxy: "{{ http_proxy }}"
       https_proxy: "{{ https_proxy }}"
@@ -60,7 +60,7 @@
 
 #  - name: Wait for ready on all Apigee components on the node
 #    ignore_errors: "{{ ignore_errors | default (true) }}"
-#    shell: '{{ apigee_all }} wait_for_ready'
+#    shell: '/opt/apigee/apigee-service/bin/apigee-all wait_for_ready'
 #    environment:
 #      http_proxy: "{{ http_proxy }}"
 #      https_proxy: "{{ https_proxy }}"
@@ -70,7 +70,7 @@
 #    when: wait_for_ready | default(false) and opdk_debug_mode is not defined or opdk_debug_mode | trim | lower == 'off'
 
   - name: DEBUG_MODE - Start all Apigee components on the node
-    shell: '{{ apigee_all }} start'
+    shell: '/opt/apigee/apigee-service/bin/apigee-all start'
     environment:
       http_proxy: "{{ http_proxy }}"
       https_proxy: "{{ https_proxy }}"
@@ -81,7 +81,7 @@
 
 #  - name: DEBUG_MODE - Wait for ready on all Apigee components on the node
 #    ignore_errors: "{{ ignore_errors | default (true) }}"
-#    shell: '{{ apigee_all }} wait_for_ready'
+#    shell: '/opt/apigee/apigee-service/bin/apigee-all wait_for_ready'
 #    environment:
 #      http_proxy: "{{ http_proxy }}"
 #      https_proxy: "{{ https_proxy }}"
