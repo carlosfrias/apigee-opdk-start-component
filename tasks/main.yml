@@ -24,7 +24,7 @@
 #    when: wait_for_ready | default(false) and opdk_debug_mode is not defined or opdk_debug_mode | trim | lower == 'off'
 
   - name: DEBUG_MODE - Start a specific Apigee component on the node
-    shell: '/opt/apigee/apigee-service/bin/apigee-service {{ component_name }} start'
+    shell: 'bash -x /opt/apigee/apigee-service/bin/apigee-service {{ component_name }} start'
     environment:
       http_proxy: "{{ http_proxy }}"
       https_proxy: "{{ https_proxy }}"
@@ -70,7 +70,7 @@
 #    when: wait_for_ready | default(false) and opdk_debug_mode is not defined or opdk_debug_mode | trim | lower == 'off'
 
   - name: DEBUG_MODE - Start all Apigee components on the node
-    shell: '/opt/apigee/apigee-service/bin/apigee-all start'
+    shell: 'bash -x /opt/apigee/apigee-service/bin/apigee-all start'
     environment:
       http_proxy: "{{ http_proxy }}"
       https_proxy: "{{ https_proxy }}"
