@@ -17,8 +17,8 @@ Role Variables
 | http_proxy | http proxy endpoint |
 | https_proxy | https proxy endpoint |
 | no_proxy | no proxy to be set when working with a proxy |
-| PORT_TIMEOUT | Update the port timeout setting in the Apigee update script |
-| UP_TIMEOUT | Update the setting in the Apigee update script waiting for the component to come up |
+| port_timeout | Update the port timeout setting in the Apigee update script |
+| up_timeout | Update the setting in the Apigee update script waiting for the component to come up |
 | opdk_debug_mode | If set to `on` then the bash script will be run with the `-x` parameter |
 
 Dependencies
@@ -28,8 +28,6 @@ A list of other roles hosted on Galaxy should go here, plus any details in regar
 
 Example Playbook
 ----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
     - hosts: servers
       roles:
