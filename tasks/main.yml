@@ -44,7 +44,7 @@
 #      UP_TIMEOUT: '{{ up_timeout | default(60) }}'
 #    when: wait_for_ready | default(false) and opdk_debug_mode is defined and opdk_debug_mode | trim | lower == 'on'
 
-  when: component_name != 'all' and opdk_version | version_compare('4.16.01', '>=')
+  when: component_name != 'all' and opdk_version is version_compare('4.16.01', '>=')
 
 - block:
 
@@ -90,4 +90,4 @@
 #      UP_TIMEOUT: '{{ up_timeout | default(60) }}'
 #    when: wait_for_ready | default(false) and opdk_debug_mode is defined and opdk_debug_mode | trim | lower == 'on'
 
-  when: component_name is not defined or (component_name == 'all' and opdk_version | version_compare('4.16.01', '>=') )
+  when: component_name is not defined or (component_name == 'all' and opdk_version is version_compare('4.16.01', '>=') )
