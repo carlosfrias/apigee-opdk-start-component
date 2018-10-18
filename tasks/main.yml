@@ -22,6 +22,15 @@
       UP_TIMEOUT: '{{ up_timeout | default(60) }}'
     when: opdk_debug_mode is defined and opdk_debug_mode | trim | lower == 'on'
 
+  - name: Wait for ready
+    become: yes
+    command: '/opt/apigee/apigee-service/bin/apigee-service {{ component_name }} wait_for_ready'
+    when: validate_ready | default(true)
+    environment:
+      http_proxy: "{{ http_proxy }}"
+      https_proxy: "{{ https_proxy }}"
+      no_proxy: "{{ no_proxy }}"
+
   when: component_name != 'all' and opdk_version is version_compare('4.16.01', '>=')
 
 - block:
@@ -45,5 +54,14 @@
       PORT_TIMEOUT: '{{ port_timeout | default(60) }}'
       UP_TIMEOUT: '{{ up_timeout | default(60) }}'
     when: opdk_debug_mode is defined and opdk_debug_mode | trim | lower == 'on'
+
+  - name: Wait for ready
+    become: yes
+    command: '/opt/apigee/apigee-service/bin/apigee-all wait_for_ready'
+    when: validate_ready | default(true)
+    environment:
+      http_proxy: "{{ http_proxy }}"
+      https_proxy: "{{ https_proxy }}"
+      no_proxy: "{{ no_proxy }}"
 
   when: component_name is not defined or (component_name == 'all' and opdk_version is version_compare('4.16.01', '>=') )
