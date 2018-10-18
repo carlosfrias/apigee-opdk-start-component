@@ -64,4 +64,4 @@
       https_proxy: "{{ https_proxy }}"
       no_proxy: "{{ no_proxy }}"
 
-  when: component_name is not defined or (component_name == 'all' and opdk_version is version_compare('4.16.01', '>=') )
+  when: component_name is not defined or component_name == 'all' and opdk_version is version_compare('4.16.01', '>=')
